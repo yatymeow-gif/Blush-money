@@ -1,7 +1,7 @@
-// Offline support: keeps a copy of the app files on your device.
+// Purrse offline support: keeps a copy of the app files on your device.
 // Your financial data is NOT stored here — it lives in the browser's database.
-const CACHE = 'blush-money-v1.0.0';
-const FILES = ['./', './index.html', './manifest.webmanifest', './icon.svg', './icon-192.png', './icon-512.png', './apple-touch-icon.png', './GUIDE.html'];
+const CACHE = 'purrse-v1.1.0';
+const FILES = ['./', './index.html', './manifest.webmanifest', './icon.svg', './icon-192.png', './icon-512.png', './icon-maskable-512.png', './apple-touch-icon.png', './GUIDE.html'];
 self.addEventListener('install', e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(FILES)).then(() => self.skipWaiting())); });
 self.addEventListener('activate', e => { e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k !== CACHE).map(k => caches.delete(k)))).then(() => self.clients.claim())); });
 self.addEventListener('fetch', e => {

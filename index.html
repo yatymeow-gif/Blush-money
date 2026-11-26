@@ -4,16 +4,18 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#FBF1F2">
-<meta name="description" content="Private, offline personal finance planner. Your data stays on your device.">
+<meta name="application-name" content="Purrse">
+<meta name="description" content="Purrse — A little care for every penny. A private, offline personal finance planner; your data stays on your device.">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="Blush Money">
+<meta name="apple-mobile-web-app-title" content="Purrse">
 <meta name="referrer" content="no-referrer">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-<title>Blush Money</title>
+<title>Purrse</title>
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="icon" href="icon-192.png" type="image/png" sizes="192x192">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <style>
 :root{
@@ -115,7 +117,7 @@ button.item:active,.item.click:active{background:var(--rose-xl)}
 
 /* buttons */
 .btn{border:0;border-radius:16px;padding:13px 18px;font-weight:800;background:var(--rose);color:#fff;display:inline-flex;align-items:center;justify-content:center;gap:8px;font-size:15px;transition:transform .1s,filter .2s}
-:root[data-theme="dark"] .btn{color:#1D1618}
+:root[data-theme="dark"] .btn:not(.ghost):not(.soft){color:#1D1618}
 .btn:active{transform:scale(.98)}
 .btn.block{width:100%}
 .btn.ghost{background:var(--card);color:var(--rose-d);border:1px solid var(--line)}
@@ -127,7 +129,7 @@ button.item:active,.item.click:active{background:var(--rose-xl)}
 .pill{border:1px solid var(--line);background:var(--card);color:var(--sage);font-weight:800;border-radius:12px;padding:7px 12px;font-size:13px;white-space:nowrap}
 .pill.rose{color:var(--rose-d)}
 .btnrow{display:flex;gap:8px;flex-wrap:wrap}
-.btnrow>.btn{flex:1}
+.btnrow>.btn{flex:1 1 auto;min-width:0}
 .linkbtn{background:none;border:0;color:var(--rose-d);font-weight:800;padding:4px 0;font-size:14px}
 
 /* progress */
@@ -168,14 +170,14 @@ select.inp{background-image:linear-gradient(45deg,transparent 50%,var(--ink2) 50
 .inp:focus{border-color:var(--rose)}
 textarea.inp{min-height:80px;resize:vertical}
 .amount-inp{font-size:34px;font-weight:800;text-align:center;border:0;background:transparent;width:100%;outline:none;padding:6px 0;color:var(--ink)}
-.frow{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.frow3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.frow{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.frow3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
 .check{display:flex;align-items:center;gap:10px;padding:10px 4px;font-weight:700;font-size:15px}
 .check input{width:22px;height:22px;accent-color:var(--rose)}
-.typegrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+.typegrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-bottom:12px}
 .typegrid button{border:1.5px solid var(--line);background:var(--card);border-radius:14px;padding:10px 4px;font-weight:800;font-size:13px;color:var(--ink2)}
 .typegrid button.on{border-color:var(--rose);color:var(--rose-d);background:var(--rose-xl)}
-.catgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:10px}
+.catgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-bottom:10px}
 .catgrid button{border:1.5px solid var(--line);background:var(--card);border-radius:14px;padding:8px 2px;font-size:11.5px;font-weight:700;color:var(--ink2);display:flex;flex-direction:column;align-items:center;gap:2px;line-height:1.15}
 .catgrid button span{font-size:22px}
 .catgrid button.on{border-color:var(--rose);background:var(--rose-xl);color:var(--ink)}
@@ -250,6 +252,8 @@ details.help summary{cursor:pointer;font-weight:800;color:var(--ink)}
 .pindots{display:flex;gap:12px}.pindots i{width:14px;height:14px;border-radius:50%;border:2px solid var(--rose)}.pindots i.f{background:var(--rose)}
 .welcome{text-align:center;padding:30px 10px}
 .welcome .logo{font-size:64px}
+.logo-img{width:96px;height:96px;border-radius:24px;box-shadow:var(--shadow);display:block;margin:0 auto 8px}
+.tagline{color:var(--rose-d);font-weight:700;font-size:14px;font-style:italic}
 .score{width:74px;height:74px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:22px;flex:none}
 .prevtbl input,.prevtbl select{border:1px solid var(--line);border-radius:8px;padding:5px 6px;font-size:13px;background:var(--card);width:100%}
 .dupe{background:var(--amber-l)}
@@ -266,10 +270,61 @@ hr.sep{border:0;border-top:1px solid var(--line);margin:14px 0}
 }
 @media print{ .printonly{display:block!important} }
 
+/* ---------- v1.0.1 layout & contrast fixes ---------- */
+/* icons: fixed size, never stretch inside flex rows */
+svg.ico{width:20px;height:20px;flex:0 0 auto;display:block;max-width:none}
+svg.ico.chev{width:18px;height:18px;color:var(--ink3);margin-left:4px}
+.btn svg.ico{width:18px;height:18px}
+.iconbtn.sm svg.ico{width:16px;height:16px}
+.nav button svg.ico{width:24px;height:24px}
+.nav .fab svg.ico{width:30px;height:30px}
+.item>.ic,.item>.end,.item>.iconbtn,.item>input{flex:0 0 auto}
+.item .mid{flex:1 1 auto;min-width:0}
+.item .end{max-width:48%}
+.item .amt-v{white-space:nowrap}
+/* inputs never force their grid cell wider than the screen (Android date/time fields) */
+.inp,select.inp,textarea.inp{min-width:0;max-width:100%;min-height:48px}
+input[type=date].inp,input[type=time].inp{display:block;line-height:1.3}
+.f{min-width:0}
+/* buttons: consistent height, labels allowed to wrap rather than be squeezed */
+button{line-height:1.25}
+.btn{min-height:46px;text-align:center;white-space:normal}
+.btn.sm{min-height:36px}
+.pill,.chip{min-height:36px;line-height:1.2}
+.btnrow{gap:8px}
+.catgrid button{min-width:0;overflow-wrap:anywhere;hyphens:auto}
+.typegrid button{min-width:0;min-height:42px;overflow-wrap:anywhere}
+.seg button{min-height:40px}
+.iconbtn{min-width:40px}
+.item .t1 .badge{vertical-align:middle}
+/* stronger badge text in light mode */
+:root:not([data-theme="dark"]){--coral-d:#A9493C;--amber-d:#8A5F0E;--sage-d:#3C6E50}
+:root:not([data-theme="dark"]) .badge.overdue,:root:not([data-theme="dark"]) .badge.partial-overdue,:root:not([data-theme="dark"]) .badge.unpaid{color:var(--coral-d)}
+:root:not([data-theme="dark"]) .badge.due,:root:not([data-theme="dark"]) .badge.est{color:var(--amber-d)}
+:root:not([data-theme="dark"]) .badge.paid{color:var(--sage-d)}
+/* dark mode contrast */
+:root[data-theme="dark"] .btn.ghost{background:var(--card);color:var(--rose-d);border-color:#5A4048}
+:root[data-theme="dark"] .btn.soft{background:#5A3A45;color:#F7D5DE}
+:root[data-theme="dark"] .btn.danger{background:#E07B6E;color:#1D1618}
+:root[data-theme="dark"] .btn.sage{background:#86C19C;color:#1D1618}
+:root[data-theme="dark"] .cal button.sel{color:#1D1618}
+:root[data-theme="dark"] .pill{background:#33272C;border-color:#4A3A40}
+:root[data-theme="dark"] .linkbtn,:root[data-theme="dark"] .card h3 .more{color:#F0B9C7}
+@media (max-width:380px){
+  #app{padding-left:12px;padding-right:12px}
+  .top h1{font-size:23px}
+  .big{font-size:23px}.hero .big{font-size:29px}
+  .seg button{font-size:13px;padding:9px 6px}
+  .catgrid{gap:6px}.catgrid button{font-size:10.5px}
+  .item{gap:10px;padding:12px}
+  .item .ic{width:36px;height:36px;font-size:19px}
+  .sheet{padding-left:14px;padding-right:14px}
+}
+
 </style>
 </head>
 <body>
-<noscript><p style="padding:20px">Please turn on JavaScript to use Blush Money.</p></noscript>
+<noscript><p style="padding:20px">Please turn on JavaScript to use Purrse.</p></noscript>
 <main id="app" aria-live="polite"></main>
 <script>
 'use strict';
@@ -278,7 +333,8 @@ hr.sep{border:0;border-top:1px solid var(--line);margin:14px 0}
    All money is rounded to cents. All dates are 'YYYY-MM-DD'
    strings in Singapore time.
    ========================================================== */
-const APP_VERSION = '1.0.0';
+const APP_VERSION = '1.1.0';
+const APP_TAGLINE = 'A little care for every penny.';
 const DATA_VERSION = 1;
 const TZ = 'Asia/Singapore';
 
@@ -397,7 +453,7 @@ function defaultState() {
   return {
     version: DATA_VERSION, createdAt: today(), appVersion: APP_VERSION,
     settings: {
-      appName: 'Blush Money', dark: 'auto', privacy: false, defaultView: 'all', defaultAccount: '', currency: 'SGD', symbol: 'S$', dateFormat: 'DD/MM/YYYY',
+      appName: 'Purrse', dark: 'auto', privacy: false, defaultView: 'all', defaultAccount: '', currency: 'SGD', symbol: 'S$', dateFormat: 'DD/MM/YYYY',
       payday: { day: 25, weekend: 'before', expected: 0 },
       members: { me: 'Me', partner: 'Husband' }, myShare: 50,
       dashCards: DASH_CARDS.map(id => ({ id, on: true })),
@@ -426,6 +482,8 @@ function migrate(d) {
   d.goals.forEach(x => { x.contribs = x.contribs || []; });
   d.bills.forEach(x => { x.occ = x.occ || {}; });
   d.bonuses.forEach(x => { x.scenarios = x.scenarios || []; });
+  // rebrand: only rename if the user never customised the old default name
+  if (d.settings.appName === 'Blush Money') d.settings.appName = 'Purrse';
   // future: if (d.version < 2) {...; d.version = 2}
   d.version = DATA_VERSION;
   return d;
@@ -1100,7 +1158,7 @@ const ICONS = {
   inbox: '<path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5.5 5h13L22 12v7a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-7z"/>', sparkle: '<path d="M12 3l2 6 6 2-6 2-2 6-2-6-6-2 6-2z"/>',
   grip: '<path d="M9 6h.01M9 12h.01M9 18h.01M15 6h.01M15 12h.01M15 18h.01"/>'
 };
-const icon = (n, cls = '') => `<svg class="${cls}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[n] || ''}</svg>`;
+const icon = (n, cls = '') => `<svg class="ico ${cls}" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[n] || ''}</svg>`;
 
 /* money */
 function money(n, opts = {}) {
@@ -1326,7 +1384,7 @@ function renderHome() {
   return html;
 }
 function welcomeCard() {
-  return `<div class="card welcome"><div class="logo">🌸</div><h2 style="margin:6px 0">Welcome to ${esc(S.settings.appName)}</h2>
+  return `<div class="card welcome"><img class="logo-img" src="icon-192.png" alt="" width="96" height="96" onerror="this.outerHTML='<div class=logo>🐱</div>'"><h2 style="margin:6px 0 2px">Welcome to ${esc(S.settings.appName)}</h2><div class="tagline">${esc(APP_TAGLINE)}</div>
   <p class="muted" style="line-height:1.5">Your private money planner. Everything stays on this device — nothing is sent anywhere.</p>
   <div class="btnrow mt" style="flex-direction:column"><button class="btn block" data-a="newAccount">${icon('plus')} Add my first account</button>
   <button class="btn soft block" data-a="loadSample">${icon('sparkle')} Explore with sample data</button>
@@ -1506,7 +1564,7 @@ function applyTheme() {
 function showLock() {
   return new Promise(res => {
     const el = document.createElement('div'); el.className = 'lockscreen'; let pin = '';
-    const draw = (msg = '') => { el.innerHTML = `<div style="font-size:44px">🔒</div><h2 style="margin:0">${esc(S.settings.appName)}</h2><div class="small muted center">Enter your app PIN<br><span class="tiny">(The PIN hides the screen. It does not encrypt your data.)</span></div><div class="pindots">${[0, 1, 2, 3, 4, 5].slice(0, S.settings.lock.len || 4).map(i => `<i class="${i < pin.length ? 'f' : ''}"></i>`).join('')}</div><div class="small neg">${msg}</div><div class="pinpad">${[1, 2, 3, 4, 5, 6, 7, 8, 9, '', 0, '⌫'].map(k => k === '' ? '<span></span>' : `<button data-k="${k}">${k}</button>`).join('')}</div><button class="linkbtn" data-forgot>Forgot PIN?</button>`; };
+    const draw = (msg = '') => { el.innerHTML = `<div style="font-size:44px">🔒</div><h2 style="margin:0">${esc(S.settings.appName)}</h2><div class="tagline">${esc(APP_TAGLINE)}</div><div class="small muted center">Enter your app PIN<br><span class="tiny">(The PIN hides the screen. It does not encrypt your data.)</span></div><div class="pindots">${[0, 1, 2, 3, 4, 5].slice(0, S.settings.lock.len || 4).map(i => `<i class="${i < pin.length ? 'f' : ''}"></i>`).join('')}</div><div class="small neg">${msg}</div><div class="pinpad">${[1, 2, 3, 4, 5, 6, 7, 8, 9, '', 0, '⌫'].map(k => k === '' ? '<span></span>' : `<button data-k="${k}">${k}</button>`).join('')}</div><button class="linkbtn" data-forgot>Forgot PIN?</button>`; };
     draw(); document.body.appendChild(el);
     el.addEventListener('click', async e => {
       if (e.target.closest('[data-forgot]')) { draw('Without the PIN, you can restore from a backup file after clearing this site\'s data in your browser settings. Your data cannot be recovered from the PIN.'); return; }
@@ -2643,20 +2701,20 @@ A.printReport = () => { toast('Opening print… choose “Save as PDF” to keep
    ========================================================== */
 function renderSettings() {
   const s = S.settings;
-  let h = topBar('Settings', 'v' + APP_VERSION, `<button class="iconbtn" data-a="tab" data-v="home" aria-label="Close">${icon('x')}</button>`);
+  let h = topBar('Settings', esc(APP_TAGLINE) + ' · v' + APP_VERSION, `<button class="iconbtn" data-a="tab" data-v="home" aria-label="Close">${icon('x')}</button>`);
   h += `<div class="sectitle">General</div><div class="card"><form id="genf">${F.text('appName', 'App name', s.appName)}
     <div class="frow">${F.sel('defaultView', 'Default view', VIEWS, s.defaultView)}${F.sel('defaultAccount', 'Default payment account', accountOpts('— none —'), s.defaultAccount)}</div>
     <div class="frow">${F.sel('dark', 'Dark mode', [['auto', 'Match my phone'], ['off', 'Off'], ['on', 'On']], s.dark)}${F.text('symbol', 'Currency symbol', s.symbol)}</div>
     <div class="frow">${F.sel('currency', 'Currency', [['SGD', 'SGD — Singapore dollar']], s.currency)}${F.sel('dateFormat', 'Date format', [['DD/MM/YYYY', 'DD/MM/YYYY']], s.dateFormat)}</div>
     ${F.check('privacy', 'Privacy mode — blur all amounts (tap and hold to peek)', s.privacy)}</form><div class="tiny muted">Times use Singapore time (UTC+8). Only SGD is supported, so amounts are never mixed across currencies.</div></div>`;
   h += `<div class="list">
-    <button class="item" data-a="editDash"><div class="ic">🧩</div><div class="mid"><div class="t1">Dashboard cards</div><div class="t2">Show, hide, reorder</div></div>${icon('right')}</button>
-    <button class="item" data-a="manageCats"><div class="ic">🏷️</div><div class="mid"><div class="t1">Categories & subcategories</div><div class="t2">Icons, colours, custom categories</div></div>${icon('right')}</button>
-    <button class="item" data-a="planSub" data-v="cashbook"><div class="ic">🏦</div><div class="mid"><div class="t1">Accounts</div><div class="t2">Icons, colours, archive</div></div>${icon('right')}</button>
-    <button class="item" data-a="manageBiz"><div class="ic">💼</div><div class="mid"><div class="t1">Business profiles</div></div>${icon('right')}</button>
-    <button class="item" data-a="hhSettings"><div class="ic">🏠</div><div class="mid"><div class="t1">Household names & split</div><div class="t2">${esc(s.members.me)} & ${esc(s.members.partner)} · your share ${s.myShare}%</div></div>${icon('right')}</button>
-    <button class="item" data-a="paydaySettings"><div class="ic">💰</div><div class="mid"><div class="t1">Payday</div><div class="t2">Day ${s.payday.day} · ${s.payday.weekend === 'before' ? 'Friday before weekends' : s.payday.weekend === 'after' ? 'Monday after weekends' : 'same day'}</div></div>${icon('right')}</button>
-    <button class="item" data-a="openImport"><div class="ic">📥</div><div class="mid"><div class="t1">Import transactions</div><div class="t2">CSV statements, pasted notifications, phone shortcuts</div></div>${icon('right')}</button></div>`;
+    <button class="item" data-a="editDash"><div class="ic">🧩</div><div class="mid"><div class="t1">Dashboard cards</div><div class="t2">Show, hide, reorder</div></div>${icon('right', 'chev')}</button>
+    <button class="item" data-a="manageCats"><div class="ic">🏷️</div><div class="mid"><div class="t1">Categories & subcategories</div><div class="t2">Icons, colours, custom categories</div></div>${icon('right', 'chev')}</button>
+    <button class="item" data-a="planSub" data-v="cashbook"><div class="ic">🏦</div><div class="mid"><div class="t1">Accounts</div><div class="t2">Icons, colours, archive</div></div>${icon('right', 'chev')}</button>
+    <button class="item" data-a="manageBiz"><div class="ic">💼</div><div class="mid"><div class="t1">Business profiles</div></div>${icon('right', 'chev')}</button>
+    <button class="item" data-a="hhSettings"><div class="ic">🏠</div><div class="mid"><div class="t1">Household names & split</div><div class="t2">${esc(s.members.me)} & ${esc(s.members.partner)} · your share ${s.myShare}%</div></div>${icon('right', 'chev')}</button>
+    <button class="item" data-a="paydaySettings"><div class="ic">💰</div><div class="mid"><div class="t1">Payday</div><div class="t2">Day ${s.payday.day} · ${s.payday.weekend === 'before' ? 'Friday before weekends' : s.payday.weekend === 'after' ? 'Monday after weekends' : 'same day'}</div></div>${icon('right', 'chev')}</button>
+    <button class="item" data-a="openImport"><div class="ic">📥</div><div class="mid"><div class="t1">Import transactions</div><div class="t2">CSV statements, pasted notifications, phone shortcuts</div></div>${icon('right', 'chev')}</button></div>`;
   h += `<div class="sectitle">Security</div><div class="card"><div class="row-flex"><div style="flex:1"><b>App PIN</b><div class="small muted">${s.lock ? 'On' : 'Off'} — hides the app behind a PIN when opened.</div></div><button class="btn sm ${s.lock ? 'ghost' : ''}" data-a="setPin">${s.lock ? 'Remove' : 'Set PIN'}</button></div><div class="help mt" style="margin-bottom:0">⚠️ The PIN is a <b>screen lock only</b>. It does not encrypt your data — anyone with access to this browser's storage could still read it. For real protection, use your phone's own lock and keep <b>encrypted backups</b> (below).</div></div>`;
   h += `<div class="sectitle">Your data</div><div class="card"><div class="btnrow"><button class="btn" data-a="backup">${icon('down')} Back up (JSON)</button><button class="btn soft" data-a="backupEnc">${icon('lock')} Encrypted backup</button></div>
     <div class="btnrow mt"><button class="btn ghost" data-a="restoreBackup">${icon('up')} Restore backup</button><button class="btn ghost" data-a="exportAllCSV">${icon('down')} All transactions CSV</button></div>
@@ -2667,7 +2725,7 @@ function renderSettings() {
   h += `<div class="sectitle">Help</div><div class="card small" style="line-height:1.55">${helpText()}</div>`;
   h += `<div class="sectitle" style="color:var(--coral)">Danger zone</div><div class="card"><button class="btn danger block" data-a="eraseAll">${icon('trash')} Erase all data on this device</button><div class="tiny muted mt">Back up first. This cannot be undone.</div></div>`;
   setTimeout(async () => {
-    const f = $('#genf'); if (f) f.onchange = () => { const v = formData(f); Object.assign(s, { appName: v.appName.trim() || 'Blush Money', defaultView: v.defaultView, defaultAccount: v.defaultAccount, dark: v.dark, symbol: v.symbol || 'S$', currency: v.currency, dateFormat: v.dateFormat, privacy: v.privacy }); applyTheme(); save(); toast('Saved'); };
+    const f = $('#genf'); if (f) f.onchange = () => { const v = formData(f); Object.assign(s, { appName: v.appName.trim() || 'Purrse', defaultView: v.defaultView, defaultAccount: v.defaultAccount, dark: v.dark, symbol: v.symbol || 'S$', currency: v.currency, dateFormat: v.dateFormat, privacy: v.privacy }); applyTheme(); save(); toast('Saved'); };
     try { const sn = await DB.get('snapshot'); const el = $('#snapinfo'); if (el && sn) el.innerHTML += ` <br><b>Available:</b> ${esc(sn.label)} · ${new Date(sn.at).toLocaleString('en-SG', { timeZone: TZ })}`; } catch (e) { }
     if (navigator.storage && navigator.storage.estimate) { try { const e = await navigator.storage.estimate(); const el = $('#stor-usage'); if (el) el.textContent = `Using about ${(e.usage / 1048576).toFixed(1)} MB of ${(e.quota / 1048576).toFixed(0)} MB available to this app.`; } catch (e) { } }
   }, 0);
@@ -2700,13 +2758,13 @@ A.quickBackup = () => A.backup();
 A.backup = async () => {
   const withR = (await DB.keys('files').catch(() => [])).length > 0;
   const data = await buildBackup(withR);
-  download(`blush-money-backup_${stamp()}.json`, JSON.stringify(data), 'application/json');
+  download(`purrse-backup_${stamp()}.json`, JSON.stringify(data), 'application/json');
   S.settings.lastBackup = new Date().toISOString(); save(); render(); toast('Backup downloaded — keep it somewhere safe');
 };
 A.backupEnc = () => {
   if (!hasCrypto()) return confirmBox('Not available here', 'Encryption needs a secure connection (https) or a local file opened in Chrome/Edge/Safari. Use a normal backup and store it in a protected place, or open the app from its https address.', 'OK', false);
   openSheet('Encrypted backup', `<form><div class="help">The backup is locked with AES-256 encryption using your password. <b>If you forget the password, the backup cannot be opened by anyone — including you.</b></div>${F.text('p1', 'Password', '', 'type="password" autocomplete="new-password"')}${F.text('p2', 'Confirm password', '', 'type="password" autocomplete="new-password"')}<button class="btn block">${icon('lock')} Create encrypted backup</button></form>`, (b, ov) => {
-    b.querySelector('form').onsubmit = async e => { e.preventDefault(); const v = formData(e.target); if (v.p1.length < 8) return toast('Use at least 8 characters'); if (v.p1 !== v.p2) return toast('Passwords do not match'); toast('Encrypting…'); const data = await buildBackup(true); const enc = await encryptText(JSON.stringify(data), v.p1); download(`blush-money-backup_${stamp()}.encrypted.json`, enc, 'application/json'); S.settings.lastBackup = new Date().toISOString(); save(); closeSheet(ov); render(); toast('Encrypted backup downloaded'); };
+    b.querySelector('form').onsubmit = async e => { e.preventDefault(); const v = formData(e.target); if (v.p1.length < 8) return toast('Use at least 8 characters'); if (v.p1 !== v.p2) return toast('Passwords do not match'); toast('Encrypting…'); const data = await buildBackup(true); const enc = await encryptText(JSON.stringify(data), v.p1); download(`purrse-backup_${stamp()}.encrypted.json`, enc, 'application/json'); S.settings.lastBackup = new Date().toISOString(); save(); closeSheet(ov); render(); toast('Encrypted backup downloaded'); };
   });
 };
 A.restoreBackup = () => {

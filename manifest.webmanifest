@@ -1,16 +1,16 @@
 {
-  "name": "Blush Money",
-  "short_name": "Blush Money",
-  "description": "Private personal finance planner — your data stays on your device.",
+  "name": "Purrse",
+  "short_name": "Purrse",
+  "description": "A little care for every penny. Private personal finance planner — your data stays on your device.",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
   "background_color": "#FBF1F2",
   "theme_color": "#FBF1F2",
   "icons": [
-    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png" },
-    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png" },
-    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
     { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml" }
   ]
 }

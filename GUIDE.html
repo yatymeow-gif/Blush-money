@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en-SG"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Blush Money — User Guide</title>
+<title>Purrse — User Guide</title>
 <style>
 :root{--bg:#FBF1F2;--card:#fff;--ink:#3B2C31;--ink2:#857078;--rose:#C27C8E;--rose-d:#A35F73;--line:#F0DFE3;--sage:#4F8A66;--coral:#D0685A;--lilac:#ECE5F6;--cream:#FFF8F1}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:ui-rounded,"SF Pro Rounded","Segoe UI",-apple-system,Roboto,Arial,sans-serif;line-height:1.6;font-size:16px}
@@ -14,9 +14,10 @@ table{border-collapse:collapse;width:100%;font-size:14px}td,th{border-bottom:1px
 a{color:var(--rose-d)}.muted{color:var(--ink2)}nav a{display:inline-block;margin:3px 8px 3px 0}
 @media (prefers-color-scheme:dark){:root{--bg:#1D1618;--card:#2A2025;--ink:#F6E9ED;--ink2:#C0A9B1;--line:#3A2D33;--lilac:#3A3148;--cream:#30252A}.warn{background:#3D321F}.ok{background:#243A2D}code,.k{background:#3A2D33}}
 </style></head><body><main>
-<div style="font-size:50px">🌸</div>
-<h1>Blush Money — User Guide</h1>
-<p class="muted">Your private personal finance planner for Singapore. Version 1.0.0 · Dates are DD/MM/YYYY · Amounts in SGD.</p>
+<img src="icon-192.png" alt="" width="88" height="88" style="border-radius:22px;display:block">
+<h1>Purrse — User Guide</h1>
+<p style="margin:0;color:var(--rose-d);font-weight:700;font-style:italic">A little care for every penny.</p>
+<p class="muted">Your private personal finance planner for Singapore. Version 1.1.0 · Dates are DD/MM/YYYY · Amounts in SGD.</p>
 <nav class="card"><b>Jump to:</b><br><a href="#files">What's in the folder</a><a href="#start">Getting started</a><a href="#install">Install on iPhone / Android</a><a href="#computer">Use on a computer</a><a href="#daily">Everyday use</a><a href="#rules">How the maths works</a><a href="#backup">Backups</a><a href="#move">Move to another device</a><a href="#update">Updating the app</a><a href="#auto">Automatic logging</a><a href="#privacy">Privacy & storage limits</a><a href="#features">Feature list</a></nav>
 
 <h2 id="files">📁 What's in the folder</h2>
@@ -80,7 +81,7 @@ a{color:var(--rose-d)}.muted{color:var(--ink2)}nav a{display:inline-block;margin
 <p class="muted">This app is a personal planning tool, not financial, tax or legal advice.</p>
 
 <h2 id="backup">💾 Backups (please do this!)</h2>
-<ol><li>Open <b>Home → ⚙︎ Settings → Back up (JSON)</b>. A file like <code>blush-money-backup_2026-11-26_1450.json</code> downloads. It includes receipts.</li>
+<ol><li>Open <b>Home → ⚙︎ Settings → Back up (JSON)</b>. A file like <code>purrse-backup_2026-11-26_1450.json</code> downloads. It includes receipts.</li>
 <li>Keep it somewhere safe that you control (e.g. your own iCloud Drive / Google Drive folder, or a USB drive). The app reminds you if it's been more than 14 days.</li>
 <li><b>Encrypted backup</b> locks the file with a password using AES-256. If you forget the password, nobody can open it — not even you.</li>
 <li><b>To restore:</b> Settings → <b>Restore backup</b> → choose the file. You'll see what's inside before anything changes, and your current data is saved as a safety copy first.</li></ol>
@@ -89,12 +90,13 @@ a{color:var(--rose-d)}.muted{color:var(--ink2)}nav a{display:inline-block;margin
 <h2 id="move">🔁 Move to another device or browser</h2>
 <ol><li>On the old device: Settings → Back up. Send the file to yourself (AirDrop, email to yourself, your own cloud drive).</li>
 <li>On the new device: open the app (from your web address / Home Screen icon) → Restore backup → choose the file.</li></ol>
+<p class="muted">Backups made when the app was called Blush Money (<code>blush-money-backup_….json</code>) restore normally in Purrse.</p>
 <p>There is no automatic sync between devices — that keeps your data private and free. Pick one main device for daily entries and use backups to move.</p>
 
 <h2 id="update">⬆️ Updating the app without losing data</h2>
 <ul><li>Your data is stored separately from the app file. Replacing <code>index.html</code> with a newer version at the <b>same address</b> (same GitHub repository, or same file location on your computer) keeps all your records.</li>
 <li><b>Always make a backup first.</b></li>
-<li>On GitHub: open the repository → click <code>index.html</code> → upload the new file with the same name (Add file → Upload files) → Commit. Also change the version name in <code>sw.js</code> (e.g. <code>v1.0.1</code>) so phones pick up the update. Close and reopen the app (sometimes twice).</li>
+<li>On GitHub: open the repository → click <code>index.html</code> → upload the new file with the same name (Add file → Upload files) → Commit. Also change the version name in <code>sw.js</code> (e.g. <code>purrse-v1.1.1</code>) so phones pick up the update. Close and reopen the app (sometimes twice).</li>
 <li>The app automatically upgrades older data formats when it opens (and backups from older versions restore fine).</li>
 <li>Changing the app: edit the files in <code>source/</code>, then run <code>python3 build.py</code> to rebuild <code>dist/index.html</code>.</li></ul>
 
