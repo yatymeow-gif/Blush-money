@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en-SG"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Blush Money — User Guide</title>
+<style>
+:root{--bg:#FBF1F2;--card:#fff;--ink:#3B2C31;--ink2:#857078;--rose:#C27C8E;--rose-d:#A35F73;--line:#F0DFE3;--sage:#4F8A66;--coral:#D0685A;--lilac:#ECE5F6;--cream:#FFF8F1}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:ui-rounded,"SF Pro Rounded","Segoe UI",-apple-system,Roboto,Arial,sans-serif;line-height:1.6;font-size:16px}
+main{max-width:760px;margin:0 auto;padding:24px 16px 60px}
+h1{font-size:32px;margin:10px 0 4px}h2{margin:34px 0 10px;font-size:22px;color:var(--rose-d)}h3{margin:18px 0 6px;font-size:17px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:14px 18px;margin:12px 0}
+.tip{background:var(--lilac)}.warn{background:#FBF0DA}.ok{background:#E3EFE6}
+code,.k{background:#F5E3E7;border-radius:6px;padding:1px 6px;font-size:14px}
+ol,ul{padding-left:22px}li{margin:4px 0}
+table{border-collapse:collapse;width:100%;font-size:14px}td,th{border-bottom:1px solid var(--line);padding:7px 6px;text-align:left;vertical-align:top}
+a{color:var(--rose-d)}.muted{color:var(--ink2)}nav a{display:inline-block;margin:3px 8px 3px 0}
+@media (prefers-color-scheme:dark){:root{--bg:#1D1618;--card:#2A2025;--ink:#F6E9ED;--ink2:#C0A9B1;--line:#3A2D33;--lilac:#3A3148;--cream:#30252A}.warn{background:#3D321F}.ok{background:#243A2D}code,.k{background:#3A2D33}}
+</style></head><body><main>
+<div style="font-size:50px">🌸</div>
+<h1>Blush Money — User Guide</h1>
+<p class="muted">Your private personal finance planner for Singapore. Version 1.0.0 · Dates are DD/MM/YYYY · Amounts in SGD.</p>
+<nav class="card"><b>Jump to:</b><br><a href="#files">What's in the folder</a><a href="#start">Getting started</a><a href="#install">Install on iPhone / Android</a><a href="#computer">Use on a computer</a><a href="#daily">Everyday use</a><a href="#rules">How the maths works</a><a href="#backup">Backups</a><a href="#move">Move to another device</a><a href="#update">Updating the app</a><a href="#auto">Automatic logging</a><a href="#privacy">Privacy & storage limits</a><a href="#features">Feature list</a></nav>
+
+<h2 id="files">📁 What's in the folder</h2>
+<table><tr><th>File</th><th>What it is</th></tr>
+<tr><td><code>index.html</code></td><td>The whole app in one file. This is all you strictly need.</td></tr>
+<tr><td><code>manifest.webmanifest</code>, <code>sw.js</code>, <code>icon*.png</code>, <code>icon.svg</code></td><td>Let the app install on your Home Screen and work offline (only when it's opened from a web address — see below).</td></tr>
+<tr><td><code>GUIDE.html</code></td><td>This guide.</td></tr>
+<tr><td><code>source/</code></td><td>The readable source code, split into parts, plus <code>build.py</code> which joins them into <code>index.html</code>. You only need this if you (or someone helping you) want to change the app.</td></tr></table>
+<div class="card ok">The app does not need Claude, an internet connection, an account, or any paid service. It keeps working after your subscription ends.</div>
+
+<h2 id="start">🚀 Getting started (5 minutes)</h2>
+<ol><li>Open the app (see the next two sections for the best way on your phone or computer).</li>
+<li>Tap <b>Explore with sample data</b> to look around with fictional numbers — or <b>Add my first account</b> to start for real.</li>
+<li>Add your accounts in <b>Plan → Cashbook</b>: bank accounts, cash, savings, e-wallets and credit cards, each with its current balance. (Tip: tick “do not count in my available cash” for savings/emergency accounts.)</li>
+<li>Set your payday in <b>Plan → Payday</b>, and your salary details in <b>Plan → Salary → Salary settings</b>.</li>
+<li>Add recurring bills, loan instalments, school/student-care fees and subscriptions with <b>+ → Bill / planned payment</b>.</li>
+<li>Add debts in <b>Plan → Debt</b> and goals in <b>Plan → Goals</b>.</li>
+<li>When you're done exploring, remove the sample data: <b>Home → ⚙︎ Settings → Remove sample data</b>. Your own records are never touched.</li>
+<li><b>Make your first backup</b> in Settings.</li></ol>
+
+<h2 id="install">📱 Install on your iPhone or Android (recommended)</h2>
+<div class="card warn"><b>Why this matters:</b> phones are not good at keeping data for an HTML file opened straight from the Files app or a chat (it may open in a preview that can't save). For reliable saving, offline use and a Home Screen icon, the app files need a web address. The files are just the empty app — <b>your financial data never goes to the website</b>; it stays in your phone's browser.</div>
+<h3>Free option: GitHub Pages (no cost, no ads)</h3>
+<ol><li>On a computer, create a free account at github.com.</li>
+<li>Click <b>New repository</b>. Give it a name, e.g. <code>money</code>. Choose <b>Public</b> (free Pages needs a public repository — this only makes the empty app code visible, never your data). Click <b>Create</b>.</li>
+<li>Click <b>uploading an existing file</b> and drag in everything from this folder <b>except</b> the <code>source</code> folder (you can include it; it's harmless). Click <b>Commit changes</b>.</li>
+<li>Go to the repository's <b>Settings → Pages</b>. Under “Build and deployment”, choose <b>Deploy from a branch</b>, branch <b>main</b>, folder <b>/ (root)</b>, then <b>Save</b>.</li>
+<li>After a minute or two the page shows your address, like <code>https://yourname.github.io/money/</code>.</li>
+<li><b>iPhone:</b> open that address in <b>Safari</b> → tap <b>Share</b> → <b>Add to Home Screen</b>. Always open the app from that icon.<br><b>Android:</b> open it in <b>Chrome</b> → menu ⋮ → <b>Install app</b> / <b>Add to Home screen</b>.</li></ol>
+<p class="muted">Other free static hosts (e.g. Netlify or Cloudflare Pages free plans) work the same way. Avoid anything that asks for payment — none is needed.</p>
+<div class="card tip">Each browser keeps its own copy of the data. The Home Screen app on iPhone has its own storage too — so enter your data in the app you'll keep using, and use backups to move between them.</div>
+
+<h2 id="computer">💻 Use on a computer</h2>
+<p>Double-click <code>index.html</code> to open it in Chrome, Edge, Firefox or Safari. Your data saves in that browser for that file location. Keep the file in the same folder (moving or renaming it can make the browser treat it as a new app — your data isn't lost, it's just tied to the old location; restore a backup to bring it across). Offline mode and installing work best from the web address described above.</p>
+
+<h2 id="daily">🌷 Everyday use</h2>
+<ul>
+<li><b>+</b> (centre button): add an expense, income, transfer, refund, reimbursement, balance adjustment, household settle-up, bill, account, goal, debt, or import.</li>
+<li><b>Quick add</b>: your most-used merchants appear at the top of the expense form. The app learns the category for each merchant.</li>
+<li><b>Home</b>: dashboard. Tap <b>Customise dashboard</b> to show, hide and reorder cards. Use the arrows to look at past months. The 👁 button hides all amounts (privacy mode).</li>
+<li><b>Activity</b>: History (filter, search, sort, custom dates), Upcoming (overdue, until payday, after payday, all planned payments), Calendar (tap a day to see everything on it).</li>
+<li><b>Plan</b>: Budget, Cashbook, Goals, Debt, Subscriptions, Salary, Bonus, Payday, Household, Business.</li>
+<li><b>Insights</b>: charts and reports. ⬇ exports CSV for the chosen period; 🖨 prints or saves a PDF.</li>
+<li>Switch between <b>All / Personal / Household / Business</b> at the top of most screens.</li>
+<li>Every transaction can be <b>edited, duplicated or deleted</b> (with Undo). Attach receipt photos under “More”.</li></ul>
+
+<h2 id="rules">🧮 How the maths works (so you can trust the numbers)</h2>
+<table>
+<tr><td><b>Transfers</b></td><td>Moving money between your own accounts (including into savings) is never income or spending.</td></tr>
+<tr><td><b>Credit cards</b></td><td>Purchases count as spending when made. Paying the card is a transfer to the card account, so it is not counted again. Card limits are never treated as cash.</td></tr>
+<tr><td><b>Refunds</b></td><td>Link a refund to the original expense — it reverses that spending in the same category. A refund can't exceed what's left of the original.</td></tr>
+<tr><td><b>Available cash</b></td><td>Your own accounts, excluding credit cards, joint accounts and anything you've marked “not in available cash”.</td></tr>
+<tr><td><b>Planned payments</b></td><td>“Mark paid” creates one transaction. If a matching transaction already exists (e.g. imported), you're offered to link it instead. Partial payments are supported; unpaid items carry forward as overdue until paid, deferred or cancelled. Deleting the payment reopens the bill.</td></tr>
+<tr><td><b>Household</b></td><td>Each household expense records who paid and your share. Expenses paid by your husband don't change your balances. The app shows who owes whom; “Settle up” clears it without counting as income or spending.</td></tr>
+<tr><td><b>Business</b></td><td>Sales/commissions/royalties are business income. Moving business money to your personal account is a transfer, so it isn't counted twice. Gross profit appears when product costs, raw materials or inventory are recorded.</td></tr>
+<tr><td><b>Debts</b></td><td>Each payment is split into principal, interest and fees. Only principal (plus fees/interest that were added to the balance) reduces what you owe. “Update from statement” makes the lender's balance override the estimate. Credit Counselling Singapore arrangements are shown separately from licensed moneylender loans.</td></tr>
+<tr><td><b>Goals</b></td><td>Contributions can just be tracked, or move money with a transfer (not spending). If goals linked to one account add up to more than its balance, you get a warning.</td></tr>
+<tr><td><b>Salary</b></td><td>All rates are editable defaults — please check them against the CPF Board and your payslip. Defaults: employee CPF 20%, ordinary-wage ceiling S$8,000/month (employees 55 and below, 2026 — verify), overtime 1.5× of 12×basic÷(52×44). The NPL daily rate method is your choice. Estimates are always labelled; record actual payslips to compare.</td></tr>
+<tr><td><b>Bonuses</b></td><td>Expected/confirmed bonuses are never counted as cash until you mark them received.</td></tr>
+<tr><td><b>Estimates</b></td><td>Payday projections, daily food/transport estimates and “what-if” scenarios never change your records.</td></tr></table>
+<p class="muted">This app is a personal planning tool, not financial, tax or legal advice.</p>
+
+<h2 id="backup">💾 Backups (please do this!)</h2>
+<ol><li>Open <b>Home → ⚙︎ Settings → Back up (JSON)</b>. A file like <code>blush-money-backup_2026-11-26_1450.json</code> downloads. It includes receipts.</li>
+<li>Keep it somewhere safe that you control (e.g. your own iCloud Drive / Google Drive folder, or a USB drive). The app reminds you if it's been more than 14 days.</li>
+<li><b>Encrypted backup</b> locks the file with a password using AES-256. If you forget the password, nobody can open it — not even you.</li>
+<li><b>To restore:</b> Settings → <b>Restore backup</b> → choose the file. You'll see what's inside before anything changes, and your current data is saved as a safety copy first.</li></ol>
+<div class="card tip"><b>Safety copy:</b> before big changes (restoring, loading/removing sample data, deleting a goal or debt, erasing) the app keeps one safety copy. Settings → <b>Restore safety copy</b> takes you back.</div>
+
+<h2 id="move">🔁 Move to another device or browser</h2>
+<ol><li>On the old device: Settings → Back up. Send the file to yourself (AirDrop, email to yourself, your own cloud drive).</li>
+<li>On the new device: open the app (from your web address / Home Screen icon) → Restore backup → choose the file.</li></ol>
+<p>There is no automatic sync between devices — that keeps your data private and free. Pick one main device for daily entries and use backups to move.</p>
+
+<h2 id="update">⬆️ Updating the app without losing data</h2>
+<ul><li>Your data is stored separately from the app file. Replacing <code>index.html</code> with a newer version at the <b>same address</b> (same GitHub repository, or same file location on your computer) keeps all your records.</li>
+<li><b>Always make a backup first.</b></li>
+<li>On GitHub: open the repository → click <code>index.html</code> → upload the new file with the same name (Add file → Upload files) → Commit. Also change the version name in <code>sw.js</code> (e.g. <code>v1.0.1</code>) so phones pick up the update. Close and reopen the app (sometimes twice).</li>
+<li>The app automatically upgrades older data formats when it opens (and backups from older versions restore fine).</li>
+<li>Changing the app: edit the files in <code>source/</code>, then run <code>python3 build.py</code> to rebuild <code>dist/index.html</code>.</li></ul>
+
+<h2 id="auto">📥 Automatic transaction logging (what's honestly possible)</h2>
+<p>A web app <b>cannot read your phone's notifications by itself</b>. What it can do:</p>
+<ul><li><b>CSV statements</b>: download a CSV from your bank → Import → CSV file → match the columns → review → save. Duplicates are detected and unticked.</li>
+<li><b>Paste alerts</b>: copy bank/SMS alerts → Import → Paste. The app reads amount, merchant, date and suggests a category and account (add the last 4 digits to your accounts to help matching).</li>
+<li><b>Phone automation</b>: iPhone <b>Shortcuts</b> or Android <b>MacroDroid / Tasker</b> can forward an alert's text to the app by opening <code>https://your-address/#add=&lt;alert text&gt;</code>. The alert lands in Import → <b>Inbox</b> for you to approve. The text never leaves your phone (the part after <code>#</code> is not sent to the website). Step-by-step instructions are in the app under Import → <b>Phone setup</b>. This only works when the app is opened from a web address. Trigger options differ by iOS/Android version, so I couldn't test them on your specific phone.</li>
+<li>No bank logins or passwords are ever needed or stored.</li></ul>
+
+<h2 id="privacy">🔒 Privacy & storage limits</h2>
+<ul><li>Everything stays in your browser's private database on your device. No accounts, no servers, no analytics, no tracking, no ads.</li>
+<li><b>Private/incognito</b> windows erase data when closed — don't use them for this app.</li>
+<li><b>Clearing website data</b> for the app's address erases your records.</li>
+<li>iPhone may clear data from websites you haven't used for a few weeks; adding the app to your <b>Home Screen</b> avoids that.</li>
+<li>The <b>app PIN</b> only hides the screen. It is not encryption. Use your phone's passcode/Face ID and encrypted backups for real protection.</li>
+<li>Settings shows how much space is used and whether the browser has agreed to keep the data.</li></ul>
+
+<h2 id="features">✅ Feature list</h2>
+<table>
+<tr><td>Design</td><td>Pastel pink/blush, dusty rose, lilac & cream, sage for positive, coral for negative; dark mode; privacy mode; phone, tablet & desktop layouts</td></tr>
+<tr><td>Home</td><td>Available cash, all balances, card owed, month income/expenses/net, budget left, debt, upcoming & overdue, savings, payday countdown & money needed, balance after payments, recent, accounts, health score; customisable; past months</td></tr>
+<tr><td>Transactions</td><td>Income, expense, transfer, refund, reimbursement, adjustment, household settle-up; category & subcategory; account; method; personal/household/business; notes; receipts; repeat; add/edit/duplicate/delete/undo; search, sort, filters, custom ranges; daily & monthly history; calendar; quick add; duplicate warnings</td></tr>
+<tr><td>Cashbook</td><td>Unlimited accounts with icons & colours, opening balance, running balance history, transfers, adjustments, reconciliation, archive, exclude from cash, card limits</td></tr>
+<tr><td>Payments</td><td>Bills, instalments, card repayments, subscriptions, school & student care fees, insurance, utilities, planned purchases, expected income; daily→annual repeats; priority; estimated/confirmed; 8 statuses; partial; defer; carry-forward; calendar; link-instead-of-duplicate</td></tr>
+<tr><td>Salary</td><td>Basic, AWS, NPL (full/half days, daily-rate method, deducted vs taken, carry-forward), overtime, allowances, bonus, CPF (editable rates/ceiling, per-component, override), deductions, reimbursements; payslips; estimate vs actual; annual, increment & bonus history</td></tr>
+<tr><td>Debt</td><td>All requested types; principal/interest/fees; full, partial, extra, settlement; fees & interest charges; statement override; settlement quotes; completed/archived; progress; debt-free estimates; snowball/avalanche/custom planner with extra & lump sum</td></tr>
+<tr><td>Budget</td><td>All default categories incl. Pets subcategories; custom categories/subcategories/icons/colours; per-view budgets; progress; overspending; copy last month; rollover</td></tr>
+<tr><td>Household</td><td>Paid by me/husband/joint, custom split, who-owes-whom, settle up, household bills & savings, by-category</td></tr>
+<tr><td>Business</td><td>Editable profiles (N&N Creations, BareDigitalsCo, N&N Publishing, TikTok Affiliate, YouTube, Other); revenue, COGS, expenses, gross & net profit, margins; monthly/annual; 12-month charts</td></tr>
+<tr><td>Goals, Bonus, Subscriptions, Payday</td><td>As described above, including scenario comparisons and what-if testing</td></tr>
+<tr><td>Insights</td><td>Income vs expenses, by category, by account, daily, weekly, monthly trend, annual, personal vs household vs business, business profit, debt & savings progress, subscriptions, pets, salary & NPL, 90-day cash flow, net worth; compare months/years; CSV; print</td></tr>
+<tr><td>Data</td><td>Backup/restore with validation, encrypted backups, safety copy, CSV export, sample data add/remove, erase with confirmation, automatic data upgrades</td></tr></table>
+<p class="muted">Known limits: one currency (SGD); no automatic bank sync (by design, for privacy); public holidays aren't considered when moving paydays; CPF annual AW ceiling and age-band/low-wage rules aren't modelled (use the CPF override).</p>
+</main></body></html>
